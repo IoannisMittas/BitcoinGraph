@@ -4,7 +4,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [SchedulerModule::class])
+@Component(modules = [SchedulersModule::class])
 interface BitcoinGraphComponent {
 
 }

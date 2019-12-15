@@ -8,7 +8,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Named
 
 @Module
-class SchedulerModule {
+class SchedulersModule {
 
     @Provides
     @Named("postScheduler")
