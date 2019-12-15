@@ -18,5 +18,5 @@ class GetMarketPriceChartUseCase @Inject constructor(
     fun getMarketPriceChart(params: MarketPriceChartParams): Observable<MarketPriceChart> =
         chartsRepository.getMarketPriceChart(params)
             .subscribeOn(workScheduler)
-            .observerOn(postScheduler)
+            .observeOn(postScheduler)
 }
