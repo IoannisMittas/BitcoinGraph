@@ -1,6 +1,6 @@
-package com.mittas.bitcoingraph.domain.repository.blockchain.charts
+package com.mittas.bitcoingraph.domain.repository.charts
 
-import com.mittas.bitcoingraph.domain.entity.blockchain.charts.MarketPriceChart
+import com.mittas.bitcoingraph.domain.entity.charts.MarketPriceChart
 import io.reactivex.Observable
 
 interface ChartsRepository {

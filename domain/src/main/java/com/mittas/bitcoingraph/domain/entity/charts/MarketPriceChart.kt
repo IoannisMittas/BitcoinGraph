@@ -1,4 +1,4 @@
-package com.mittas.bitcoingraph.domain.entity.blockchain.charts
+package com.mittas.bitcoingraph.domain.entity.charts
 
 data class MarketPriceChart(
     override val status: String?,

@@ -1,8 +1,8 @@
-package com.mittas.bitcoingraph.domain.usecases.blockchain.charts
+package com.mittas.bitcoingraph.domain.usecases.charts
 
-import com.mittas.bitcoingraph.domain.entity.blockchain.charts.MarketPriceChart
-import com.mittas.bitcoingraph.domain.repository.blockchain.charts.ChartsRepository
-import com.mittas.bitcoingraph.domain.repository.blockchain.charts.MarketPriceChartParams
+import com.mittas.bitcoingraph.domain.entity.charts.MarketPriceChart
+import com.mittas.bitcoingraph.domain.repository.charts.ChartsRepository
+import com.mittas.bitcoingraph.domain.repository.charts.MarketPriceChartParams
 import com.mittas.bitcoingraph.domain.usecases.BaseUseCase
 import io.reactivex.Observable
 import io.reactivex.Scheduler

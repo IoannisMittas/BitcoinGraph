@@ -1,9 +1,9 @@
-package com.mittas.bitcoingraph.data.repositories.blockchain.charts
+package com.mittas.bitcoingraph.data.repositories.charts
 
-import com.mittas.bitcoingraph.data.network.blockchain.charts.ChartsApi
-import com.mittas.bitcoingraph.domain.entity.blockchain.charts.MarketPriceChart
-import com.mittas.bitcoingraph.domain.repository.blockchain.charts.ChartsRepository
-import com.mittas.bitcoingraph.domain.repository.blockchain.charts.MarketPriceChartParams
+import com.mittas.bitcoingraph.data.network.charts.ChartsApi
+import com.mittas.bitcoingraph.domain.entity.charts.MarketPriceChart
+import com.mittas.bitcoingraph.domain.repository.charts.ChartsRepository
+import com.mittas.bitcoingraph.domain.repository.charts.MarketPriceChartParams
 import io.reactivex.Observable
 import javax.inject.Inject
 

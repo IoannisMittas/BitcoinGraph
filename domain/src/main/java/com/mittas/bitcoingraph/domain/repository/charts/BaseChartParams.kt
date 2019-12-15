@@ -1,4 +1,4 @@
-package com.mittas.bitcoingraph.domain.repository.blockchain.charts
+package com.mittas.bitcoingraph.domain.repository.charts
 
 abstract class BaseChartParams{
     abstract val timespan: String?

@@ -1,4 +1,4 @@
-package com.mittas.bitcoingraph.domain.repository.blockchain.charts
+package com.mittas.bitcoingraph.domain.repository.charts
 
 data class MarketPriceChartParams(
 override val timespan: String?,

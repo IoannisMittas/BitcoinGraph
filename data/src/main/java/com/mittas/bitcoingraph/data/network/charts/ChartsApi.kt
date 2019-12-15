@@ -1,6 +1,6 @@
-package com.mittas.bitcoingraph.data.network.blockchain.charts
+package com.mittas.bitcoingraph.data.network.charts
 
-import com.mittas.bitcoingraph.domain.entity.blockchain.charts.MarketPriceChart
+import com.mittas.bitcoingraph.domain.entity.charts.MarketPriceChart
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
