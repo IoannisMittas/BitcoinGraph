@@ -4,7 +4,7 @@ import com.mittas.bitcoingraph.domain.entity.blockchain.charts.AverageBlockSizeC
 import com.mittas.bitcoingraph.domain.entity.blockchain.charts.MarketPriceChart
 import com.mittas.bitcoingraph.domain.entity.blockchain.charts.MempoolSizeChart
 import com.mittas.bitcoingraph.domain.entity.blockchain.charts.TransactionsPerDayChart
-import rx.Observable
+import io.reactivex.Observable
 
 interface ChartsRepository {
 
