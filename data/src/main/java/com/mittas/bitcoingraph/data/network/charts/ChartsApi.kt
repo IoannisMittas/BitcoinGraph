@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface ChartsApi {
 
-    @GET("market-price")
+    @GET("charts/market-price")
     fun getMarketPriceChart(
         @Query("timespan") timespan: String?,
         @Query("rollingAverage") rollingAverage: String?,
