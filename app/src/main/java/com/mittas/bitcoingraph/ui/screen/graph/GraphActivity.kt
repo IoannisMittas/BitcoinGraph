@@ -34,6 +34,4 @@ class GraphActivity : AppCompatActivity() {
     private fun updateGraph(chart: MarketPriceChart) {
 
     }
-
-
 }

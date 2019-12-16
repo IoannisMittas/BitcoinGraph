@@ -7,6 +7,7 @@ import com.mittas.bitcoingraph.domain.entity.charts.MarketPriceChart
 import com.mittas.bitcoingraph.domain.repository.charts.MarketPriceChartParams
 import com.mittas.bitcoingraph.domain.usecases.charts.GetMarketPriceChartUseCase
 import io.reactivex.disposables.CompositeDisposable
+import timber.log.Timber
 import javax.inject.Inject
 
 class GraphViewModel @Inject constructor(private val getMarketPriceChartUseCase: GetMarketPriceChartUseCase) :
@@ -35,7 +36,8 @@ class GraphViewModel @Inject constructor(private val getMarketPriceChartUseCase:
                 .subscribe({
                     it?.let { _bitcoinPriceChart.postValue(it) }
                 }, {
-                    //todo handle onError gracefully, maybe use Timber???
+                    it.printStackTrace()
+                    Timber.d("Error on fetching price chart.")
                 })
         )
     }
