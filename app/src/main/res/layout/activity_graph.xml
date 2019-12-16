@@ -1,8 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.screen.graph.GraphActivity">
+    android:layout_height="match_parent">
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <LinearLayout
+        android:id="@+id/timespanButtonsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/hourButton"
+            style="@style/AppTheme.Button.TextOnly"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/timespan_hour" />
+
+        <Button
+            android:id="@+id/dayButton"
+            style="@style/AppTheme.Button.TextOnly"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/timespan_day" />
+
+        <Button
+            android:id="@+id/weekButton"
+            style="@style/AppTheme.Button.TextOnly"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/timespan_week" />
+
+        <Button
+            android:id="@+id/monthButton"
+            style="@style/AppTheme.Button.TextOnly"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/timespan_month" />
+
+        <Button
+            android:id="@+id/yearButton"
+            style="@style/AppTheme.Button.TextOnly"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/timespan_year" />
+    </LinearLayout>
+
+
+</LinearLayout>

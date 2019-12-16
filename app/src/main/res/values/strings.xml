@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Bitcoin Graph</string>
-    <string name="title_activity_graph">GraphActivity</string>
+
+    <string name="timespan_hour">Hour</string>
+    <string name="timespan_day">Day</string>
+    <string name="timespan_week">Week</string>
+    <string name="timespan_month">Month</string>
+    <string name="timespan_year">Year</string>
 </resources>
