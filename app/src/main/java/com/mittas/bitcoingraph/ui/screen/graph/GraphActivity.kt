@@ -2,8 +2,10 @@ package com.mittas.bitcoingraph.ui.screen.graph
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.mittas.bitcoingraph.R
+import com.mittas.bitcoingraph.domain.entity.charts.MarketPriceChart
 
 class GraphActivity : AppCompatActivity() {
 
@@ -16,8 +18,12 @@ class GraphActivity : AppCompatActivity() {
     }
 
     private fun subscribeToViewModel() {
-        // TODO consume values
+        viewModel.bitcoinPriceChart.observe(this, Observer {
+            updateGraph(it)
+        })
+    }
 
+    private fun updateGraph(chart: MarketPriceChart) {
 
     }
 
