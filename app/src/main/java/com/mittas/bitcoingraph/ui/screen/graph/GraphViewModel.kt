@@ -33,9 +33,7 @@ class GraphViewModel @Inject constructor(private val getMarketPriceChartUseCase:
         compositeDisposable.add(
             getMarketPriceChartUseCase.getChart(params)
                 .subscribe({
-                    it?.let {
-                        _bitcoinPriceChart.postValue(it)
-                    }
+                    it?.let { _bitcoinPriceChart.postValue(it) }
                 }, {
                     //todo handle onError gracefully, maybe use Timber???
                 })

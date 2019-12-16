@@ -2,11 +2,17 @@ package com.mittas.bitcoingraph.data.network
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.mittas.bitcoingraph.BuildConfig
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 object ApiFactories {
+
+    private const val TIMEOUT_SECS = 60L
 
     fun <T> createApi(baseUrl: String, api: Class<T>): T {
         return createRetrofitApi(baseUrl, api)
@@ -17,11 +23,28 @@ object ApiFactories {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(createGson()))
             .baseUrl(baseUrl)
+            .client(createOkHttpClient())
             .build()
             .create(api)
     }
 
     private fun createGson(): Gson {
         return GsonBuilder().create()
+    }
+
+    private fun createOkHttpClient(): OkHttpClient {
+        val builder = OkHttpClient.Builder().apply {
+            writeTimeout(TIMEOUT_SECS, TimeUnit.SECONDS)
+            readTimeout(TIMEOUT_SECS, TimeUnit.SECONDS)
+            connectTimeout(TIMEOUT_SECS, TimeUnit.SECONDS)
+        }
+
+
+
+        if (BuildConfig.DEBUG) {
+            val loggingInterceptor = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
+            builder.addInterceptor(loggingInterceptor)
+        }
+        return builder.build()
     }
 }

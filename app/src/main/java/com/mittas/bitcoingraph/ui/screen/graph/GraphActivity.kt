@@ -1,7 +1,6 @@
 package com.mittas.bitcoingraph.ui.screen.graph
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -33,7 +32,7 @@ class GraphActivity : AppCompatActivity() {
     }
 
     private fun updateGraph(chart: MarketPriceChart) {
-        Log.d("Psoli", "${chart.description}")
+
     }
 
 
