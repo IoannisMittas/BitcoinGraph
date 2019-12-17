@@ -2,6 +2,7 @@ package com.mittas.bitcoingraph.ui.screen.graph
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -38,11 +39,27 @@ class GraphActivity : AppCompatActivity() {
     private fun updateGraph(bitcoinPriceChart: MarketPriceChart) {
         val entries = mutableListOf<Entry>()
         bitcoinPriceChart.values?.forEach { entries.add(Entry(it.x.toFloat(), it.y.toFloat())) }
-        val dataset = LineDataSet(entries, "Psoli")
-        dataset.color = R.color.accent
-        val linedata = LineData(dataset)
-        lineChart.data = linedata
-        lineChart.invalidate()
+
+        val lineDataSet = LineDataSet(entries, null).apply {
+            setDrawCircles(false)
+            setDrawHorizontalHighlightIndicator(false)
+            color = ContextCompat.getColor(this@GraphActivity, R.color.accent)
+        }
+
+        val lineData = LineData(lineDataSet)
+
+        lineChart.apply {
+            xAxis.setDrawGridLines(false)
+            xAxis.textColor = ContextCompat.getColor(this@GraphActivity, R.color.accent)
+            axisRight.isEnabled = false
+            axisLeft.textColor = ContextCompat.getColor(this@GraphActivity, R.color.accent)
+            description.isEnabled = false
+            legend.isEnabled = false
+            data = lineData
+            invalidate()
+        }
+
+
     }
 }
 
