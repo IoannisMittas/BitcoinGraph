@@ -39,7 +39,7 @@ class GraphActivity : AppCompatActivity() {
         val entries = mutableListOf<Entry>()
         bitcoinPriceChart.values?.forEach { entries.add(Entry(it.x.toFloat(), it.y.toFloat())) }
         val dataset = LineDataSet(entries, "Psoli")
-        dataset.color = R.color.colorAccent
+        dataset.color = R.color.accent
         val linedata = LineData(dataset)
         lineChart.data = linedata
         lineChart.invalidate()
