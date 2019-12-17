@@ -30,8 +30,10 @@ RxAndroid\
 Dagger2
 Retrofit\
 OkHttp\
+JUnit\
 GSON\
 Timber\
 Android Architecture Components\
 Blockchain API\
 MPAndroidChart (https://github.com/PhilJay/MPAndroidChart)
+
