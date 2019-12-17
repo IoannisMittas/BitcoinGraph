@@ -3,6 +3,9 @@ package com.mittas.bitcoingraph.ui.screen.graph
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.mittas.bitcoingraph.data.utils.monthsQueryParam
+import com.mittas.bitcoingraph.data.utils.weeksQueryParam
+import com.mittas.bitcoingraph.data.utils.yearsQueryParam
 import com.mittas.bitcoingraph.domain.entity.charts.MarketPriceChart
 import com.mittas.bitcoingraph.domain.repository.charts.MarketPriceChartParams
 import com.mittas.bitcoingraph.domain.usecases.charts.GetMarketPriceChartUseCase
@@ -20,17 +23,12 @@ class GraphViewModel @Inject constructor(private val getMarketPriceChartUseCase:
         get() = _bitcoinPriceChart
 
     init {
-        fetchBitcoinPriceChart()
+        //todo change, now fetching with all defaults
+        fetchBitcoinPriceChart(MarketPriceChartParams())
     }
 
-    private fun fetchBitcoinPriceChart() {
-        val params = MarketPriceChartParams(
-            timespan = null,
-            rollingAverage = null,
-            start = null,
-            format = null,
-            sampled = null
-        )
+    private fun fetchBitcoinPriceChart(params: MarketPriceChartParams) {
+
         compositeDisposable.add(
             getMarketPriceChartUseCase.getChart(params)
                 .subscribe({
@@ -42,8 +40,22 @@ class GraphViewModel @Inject constructor(private val getMarketPriceChartUseCase:
         )
     }
 
+    fun onTimespanButtonClicked(timespan: Timespan) {
+        val timespanQueryParam = when (timespan) {
+            Timespan.WEEK -> 1.weeksQueryParam()
+            Timespan.MONTH -> 1.monthsQueryParam()
+            Timespan.YEAR -> 1.yearsQueryParam()
+        }
+
+        fetchBitcoinPriceChart(MarketPriceChartParams(timespanQueryParam))
+    }
+
     override fun onCleared() {
         compositeDisposable.dispose()
         super.onCleared()
+    }
+
+    enum class Timespan {
+       WEEK, MONTH, YEAR
     }
 }

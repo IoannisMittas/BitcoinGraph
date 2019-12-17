@@ -28,6 +28,7 @@ class GraphActivity : AppCompatActivity() {
         setContentView(R.layout.activity_graph)
         viewModel = ViewModelProviders.of(this, viewModelFactory)[GraphViewModel::class.java]
         subscribeToViewModel()
+        setupUI()
     }
 
     private fun subscribeToViewModel() {
@@ -57,9 +58,14 @@ class GraphActivity : AppCompatActivity() {
             legend.isEnabled = false
             data = lineData
             invalidate()
+            notifyDataSetChanged()
         }
+    }
 
-
+    private fun setupUI() {
+        weekButton.setOnClickListener { viewModel.onTimespanButtonClicked(GraphViewModel.Timespan.WEEK) }
+        monthButton.setOnClickListener { viewModel.onTimespanButtonClicked(GraphViewModel.Timespan.MONTH) }
+        yearButton.setOnClickListener { viewModel.onTimespanButtonClicked(GraphViewModel.Timespan.YEAR) }
     }
 }
 

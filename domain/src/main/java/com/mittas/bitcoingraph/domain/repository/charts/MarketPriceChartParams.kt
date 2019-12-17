@@ -1,9 +1,9 @@
 package com.mittas.bitcoingraph.domain.repository.charts
 
 data class MarketPriceChartParams(
-override val timespan: String?,
-override val rollingAverage: String?,
-override val start: Double?,
-override val format: String?,
-override val sampled: Boolean?
+override var timespan: String? = null,
+override var rollingAverage: String? = null,
+override var start: Double? = null,
+override var format: String? = null,
+override var sampled: Boolean? = null
 ) : BaseChartParams()

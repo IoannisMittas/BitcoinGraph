@@ -1,9 +1,9 @@
 package com.mittas.bitcoingraph.domain.repository.charts
 
 abstract class BaseChartParams{
-    abstract val timespan: String?
-    abstract val rollingAverage: String?
-    abstract val start: Double?
-    abstract val format: String?
-    abstract val sampled: Boolean?
+    abstract var timespan: String?
+    abstract var rollingAverage: String?
+    abstract var start: Double?
+    abstract var format: String?
+    abstract var sampled: Boolean?
 }

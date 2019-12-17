@@ -15,22 +15,6 @@
         android:padding="5dp">
 
         <Button
-            android:id="@+id/hourButton"
-            style="@style/AppTheme.Button.TextOnly"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/timespan_hour" />
-
-        <Button
-            android:id="@+id/dayButton"
-            style="@style/AppTheme.Button.TextOnly"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/timespan_day" />
-
-        <Button
             android:id="@+id/weekButton"
             style="@style/AppTheme.Button.TextOnly"
             android:layout_width="0dp"
