@@ -62,10 +62,27 @@ class GraphActivity : AppCompatActivity() {
         }
     }
 
+    // todo refactor isSelected
     private fun setupUI() {
-        weekButton.setOnClickListener { viewModel.onTimespanButtonClicked(Timespan.WEEK) }
-        monthButton.setOnClickListener { viewModel.onTimespanButtonClicked(Timespan.MONTH) }
-        yearButton.setOnClickListener { viewModel.onTimespanButtonClicked(Timespan.YEAR) }
+        weekButton.setOnClickListener {
+            viewModel.onTimespanButtonClicked(Timespan.WEEK)
+            weekButton.isSelected = true
+            monthButton.isSelected = false
+            yearButton.isSelected = false
+        }
+
+        monthButton.setOnClickListener {
+            viewModel.onTimespanButtonClicked(Timespan.MONTH)
+            monthButton.isSelected = true
+            weekButton.isSelected = false
+            yearButton.isSelected = false
+        }
+        yearButton.setOnClickListener {
+            viewModel.onTimespanButtonClicked(Timespan.YEAR)
+            yearButton.isSelected = true
+            weekButton.isSelected = false
+            monthButton.isSelected = false
+        }
     }
 }
 

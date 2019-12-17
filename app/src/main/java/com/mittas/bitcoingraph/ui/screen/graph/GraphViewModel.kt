@@ -28,7 +28,6 @@ class GraphViewModel @Inject constructor(private val getMarketPriceChartUseCase:
     }
 
     private fun fetchBitcoinPriceChart(params: MarketPriceChartParams) {
-
         compositeDisposable.add(
             getMarketPriceChartUseCase.getChart(params)
                 .subscribe({
