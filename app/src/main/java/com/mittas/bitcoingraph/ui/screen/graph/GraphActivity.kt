@@ -5,9 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import com.mittas.bitcoingraph.R
 import com.mittas.bitcoingraph.di.DIHelper
 import com.mittas.bitcoingraph.domain.entity.charts.MarketPriceChart
+import kotlinx.android.synthetic.main.activity_graph.*
 import javax.inject.Inject
 
 class GraphActivity : AppCompatActivity() {
@@ -31,7 +35,14 @@ class GraphActivity : AppCompatActivity() {
         })
     }
 
-    private fun updateGraph(chart: MarketPriceChart) {
-
+    private fun updateGraph(bitcoinPriceChart: MarketPriceChart) {
+        val entries = mutableListOf<Entry>()
+        bitcoinPriceChart.values?.forEach { entries.add(Entry(it.x.toFloat(), it.y.toFloat())) }
+        val dataset = LineDataSet(entries, "Psoli")
+        dataset.color = R.color.colorAccent
+        val linedata = LineData(dataset)
+        lineChart.data = linedata
+        lineChart.invalidate()
     }
 }
+
