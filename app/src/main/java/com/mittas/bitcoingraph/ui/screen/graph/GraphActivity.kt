@@ -63,9 +63,9 @@ class GraphActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
-        weekButton.setOnClickListener { viewModel.onTimespanButtonClicked(GraphViewModel.Timespan.WEEK) }
-        monthButton.setOnClickListener { viewModel.onTimespanButtonClicked(GraphViewModel.Timespan.MONTH) }
-        yearButton.setOnClickListener { viewModel.onTimespanButtonClicked(GraphViewModel.Timespan.YEAR) }
+        weekButton.setOnClickListener { viewModel.onTimespanButtonClicked(Timespan.WEEK) }
+        monthButton.setOnClickListener { viewModel.onTimespanButtonClicked(Timespan.MONTH) }
+        yearButton.setOnClickListener { viewModel.onTimespanButtonClicked(Timespan.YEAR) }
     }
 }
 

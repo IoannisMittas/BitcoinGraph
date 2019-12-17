@@ -54,8 +54,4 @@ class GraphViewModel @Inject constructor(private val getMarketPriceChartUseCase:
         compositeDisposable.dispose()
         super.onCleared()
     }
-
-    enum class Timespan {
-       WEEK, MONTH, YEAR
-    }
 }
