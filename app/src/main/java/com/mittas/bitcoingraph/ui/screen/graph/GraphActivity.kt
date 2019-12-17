@@ -2,87 +2,36 @@ package com.mittas.bitcoingraph.ui.screen.graph
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
+import com.google.android.material.tabs.TabLayoutMediator
 import com.mittas.bitcoingraph.R
 import com.mittas.bitcoingraph.di.DIHelper
-import com.mittas.bitcoingraph.domain.entity.charts.MarketPriceChart
 import kotlinx.android.synthetic.main.activity_graph.*
-import javax.inject.Inject
 
 class GraphActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    lateinit var viewModel: GraphViewModel
+    private lateinit var fragmentAdapter: GraphFragmentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         DIHelper.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_graph)
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[GraphViewModel::class.java]
-        subscribeToViewModel()
         setupUI()
     }
 
-    private fun subscribeToViewModel() {
-        viewModel.bitcoinPriceChart.observe(this, Observer {
-            updateGraph(it)
-        })
-    }
-
-    private fun updateGraph(bitcoinPriceChart: MarketPriceChart) {
-        val entries = mutableListOf<Entry>()
-        bitcoinPriceChart.values?.forEach { entries.add(Entry(it.x.toFloat(), it.y.toFloat())) }
-
-        val lineDataSet = LineDataSet(entries, null).apply {
-            setDrawCircles(false)
-            setDrawHorizontalHighlightIndicator(false)
-            color = ContextCompat.getColor(this@GraphActivity, R.color.accent)
-        }
-
-        val lineData = LineData(lineDataSet)
-
-        lineChart.apply {
-            xAxis.setDrawGridLines(false)
-            xAxis.textColor = ContextCompat.getColor(this@GraphActivity, R.color.accent)
-            axisRight.isEnabled = false
-            axisLeft.textColor = ContextCompat.getColor(this@GraphActivity, R.color.accent)
-            description.isEnabled = false
-            legend.isEnabled = false
-            data = lineData
-            invalidate()
-            notifyDataSetChanged()
-        }
-    }
-
-    // todo refactor isSelected
     private fun setupUI() {
-        weekButton.setOnClickListener {
-            viewModel.onTimespanButtonClicked(Timespan.WEEK)
-            weekButton.isSelected = true
-            monthButton.isSelected = false
-            yearButton.isSelected = false
-        }
-
-        monthButton.setOnClickListener {
-            viewModel.onTimespanButtonClicked(Timespan.MONTH)
-            monthButton.isSelected = true
-            weekButton.isSelected = false
-            yearButton.isSelected = false
-        }
-        yearButton.setOnClickListener {
-            viewModel.onTimespanButtonClicked(Timespan.YEAR)
-            yearButton.isSelected = true
-            weekButton.isSelected = false
-            monthButton.isSelected = false
-        }
+        fragmentAdapter = GraphFragmentAdapter(this)
+        viewPager.adapter = fragmentAdapter
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = when (position.timespanForPosition()) {
+                Timespan.WEEK -> resources.getString(R.string.timespan_week)
+                Timespan.MONTH -> resources.getString(R.string.timespan_month)
+                Timespan.YEAR -> resources.getString(R.string.timespan_year)
+                else -> ""
+            }
+        }.attach()
     }
+
 }
+
+
 

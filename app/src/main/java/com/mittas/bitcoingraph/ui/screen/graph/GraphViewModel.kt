@@ -16,16 +16,26 @@ import javax.inject.Inject
 class GraphViewModel @Inject constructor(private val getMarketPriceChartUseCase: GetMarketPriceChartUseCase) :
     ViewModel() {
 
+    var position: Int = -1
+        set(value) {
+            field = value
+            if (field >= 0) {
+                val timespanQueryParam = when (field.timespanForPosition()) {
+                    Timespan.WEEK -> 1.weeksQueryParam()
+                    Timespan.MONTH -> 1.monthsQueryParam()
+                    Timespan.YEAR -> 1.yearsQueryParam()
+                    else -> null
+                }
+
+                fetchBitcoinPriceChart(MarketPriceChartParams(timespan = timespanQueryParam))
+            }
+        }
+
     private val compositeDisposable = CompositeDisposable()
 
     private val _bitcoinPriceChart: MutableLiveData<MarketPriceChart> = MutableLiveData()
     val bitcoinPriceChart: LiveData<MarketPriceChart>
         get() = _bitcoinPriceChart
-
-    init {
-        //todo change, now fetching with all defaults
-        fetchBitcoinPriceChart(MarketPriceChartParams())
-    }
 
     private fun fetchBitcoinPriceChart(params: MarketPriceChartParams) {
         compositeDisposable.add(
@@ -37,16 +47,6 @@ class GraphViewModel @Inject constructor(private val getMarketPriceChartUseCase:
                     Timber.d("Error on fetching price chart.")
                 })
         )
-    }
-
-    fun onTimespanButtonClicked(timespan: Timespan) {
-        val timespanQueryParam = when (timespan) {
-            Timespan.WEEK -> 1.weeksQueryParam()
-            Timespan.MONTH -> 1.monthsQueryParam()
-            Timespan.YEAR -> 1.yearsQueryParam()
-        }
-
-        fetchBitcoinPriceChart(MarketPriceChartParams(timespanQueryParam))
     }
 
     override fun onCleared() {
