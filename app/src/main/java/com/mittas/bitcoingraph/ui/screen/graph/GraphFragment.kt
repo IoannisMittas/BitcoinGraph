@@ -55,19 +55,26 @@ class GraphFragment : Fragment() {
 
         val lineDataSet = LineDataSet(entries, null).apply {
             setDrawCircles(false)
+            setDrawValues(false)
             setDrawHorizontalHighlightIndicator(false)
             color = ContextCompat.getColor(requireContext(), R.color.accent)
         }
 
-        val lineData = LineData(lineDataSet)
+        val lineData = LineData(lineDataSet).apply { isHighlightEnabled = false }
 
         lineChart.apply {
             xAxis.setDrawGridLines(false)
+            xAxis.setDrawLabels(false)
             xAxis.textColor = ContextCompat.getColor(requireContext(), R.color.accent)
+
+
+
             axisRight.isEnabled = false
             axisLeft.textColor = ContextCompat.getColor(requireContext(), R.color.accent)
+
             description.isEnabled = false
             legend.isEnabled = false
+
             data = lineData
             invalidate()
             notifyDataSetChanged()
